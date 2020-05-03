@@ -10,12 +10,10 @@ import App from './components/App';
 const store = createStore(reducer, middleware);
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <CssBaseline>
-        <App />
-      </CssBaseline>
-    </Provider>
-  </React.StrictMode>,
+  <Provider store={store}>
+    <CssBaseline>
+      <App />
+    </CssBaseline>
+  </Provider>,
   document.getElementById('root')
 );
