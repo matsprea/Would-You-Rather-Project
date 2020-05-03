@@ -18,10 +18,11 @@ export const addAnswerToUser = (authUser, qid, answer) => ({
 })
 
 //TODO: Optimistic update
-export const handleSaveQuestionAnswer = (authUser, qid, answer) => (dispatch) => _saveQuestionAnswer(authUser, qid, answer).then(() => {
-    dispatch(addAnswerToUser(authUser, qid, answer));
-    dispatch(addAnswerToQuestion(authUser, qid, answer));
-})
+export const handleSaveQuestionAnswer = (authUser, qid, answer) => (dispatch) =>
+    _saveQuestionAnswer({ authedUser: authUser, qid, answer }).then(() => {
+        dispatch(addAnswerToUser(authUser, qid, answer));
+        dispatch(addAnswerToQuestion(authUser, qid, answer));
+    });
 
 export const addQuestionToUser = ({ id, author }) => ({
     type: ADD_QUESTION_TO_USER,

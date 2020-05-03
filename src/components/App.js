@@ -12,14 +12,14 @@ import Topbar from './TopBar';
 import Home from './Home';
 import Leaderboard from './Leaderboard';
 import NewPoll from './NewPoll';
-import Question from './Question';
+import Poll from './Poll';
 import BadPath from './BadPath';
 
 const App = ({ authUser, handleInitialData }) => {
   useEffect(() => {
     handleInitialData();
   }, [handleInitialData]);
-  
+
   return (
     <Router>
       {!!authUser ? (
@@ -27,17 +27,17 @@ const App = ({ authUser, handleInitialData }) => {
           <Topbar />
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route path="/questions/:question_id" component={Question} />
+            <Route path="/questions/:question_id" component={Poll} />
             <Route exact path="/add" component={NewPoll} />
             <Route exact path="/leaderboard" component={Leaderboard} />
             <Route component={BadPath} />
           </Switch>
         </>
       ) : (
-          <Switch>
-            <Route exact path="/" component={Login} />
-            <Route component={() => <Redirect to='/' />} />
-          </Switch>
+        <Switch>
+          <Route exact path="/" component={Login} />
+          <Route component={() => <Redirect to="/" />} />
+        </Switch>
       )}
     </Router>
   );
