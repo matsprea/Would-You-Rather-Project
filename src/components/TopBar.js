@@ -1,23 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 
 import { setAuthUser } from '../actions/authUser';
 
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import Avatar from '@material-ui/core/Avatar';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardHeader from '@material-ui/core/CardHeader';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Grid from '@material-ui/core/Grid';
-import StarIcon from '@material-ui/icons/StarBorder';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -62,32 +55,33 @@ const TopBar = ({ user, setAuthUser }) => {
           <Link
             variant="button"
             color="textPrimary"
-            href="/"
+            to="/"
             className={classes.link}
+            component={NavLink}
           >
             Home
           </Link>
           <Link
             variant="button"
             color="textSecondary"
-            href="/add"
+            to="/add"
             className={classes.link}
+            component={NavLink}
           >
             New poll
           </Link>
           <Link
             variant="button"
             color="textSecondary"
-            href="/leaderboard"
+            to="/leaderboard"
             className={classes.link}
+            component={NavLink}
           >
             Leaderboard
           </Link>
         </nav>
         <Avatar variant="square" alt={user.name} src={user.avatarURL} />
-
         <Button
-          href="#"
           color="primary"
           variant="outlined"
           className={classes.link}
