@@ -1,5 +1,7 @@
 # Would You Rather Project
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/1b07f3ea-db48-46e6-86ef-fe613b3d8746/deploy-status)](https://app.netlify.com/sites/upbeat-einstein-568a8b/deploys)
+
 ## Available Scripts
 
 In the project directory, you can run:
