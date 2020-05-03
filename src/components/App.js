@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { handleInitialData } from '../actions/shared';
 import Login from './Login';
-import './css/App.css';
+import Topbar from './TopBar';
 
 const App = ({ authUser, handleInitialData }) => {
   useEffect(() => {
@@ -10,9 +10,9 @@ const App = ({ authUser, handleInitialData }) => {
   }, [handleInitialData]);
 
   return authUser ? (
-    <div className="App">
-      <header className="App-header"> Would You Rather </header>
-    </div>
+    <React.Fragment>
+      <Topbar />
+    </React.Fragment>
   ) : (
     <Login />
   );

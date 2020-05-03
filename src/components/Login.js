@@ -9,7 +9,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Avatar from '@material-ui/core/Avatar';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import { CircularProgress, LinearProgress } from '@material-ui/core';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -106,12 +106,10 @@ const Login = ({ users, loading, setAuthUser }) => {
 
   const handleButton = (event, user) => {
     event.preventDefault();
-    if (user !== '') setAuthUser(user);
+    setAuthUser(user.id);
   };
 
-  return loading ? (
-    <LinearProgress />
-  ) : (
+  return (
     <Container>
       <Typography component="h1" variant="h1" className={classes.title}>
         Would You Rather
@@ -155,7 +153,7 @@ const Login = ({ users, loading, setAuthUser }) => {
                 </ButtonBase>
               ))
             ) : (
-              <CircularProgress />
+              <LinearProgress />
             )}
           </div>
         </div>
@@ -164,9 +162,8 @@ const Login = ({ users, loading, setAuthUser }) => {
   );
 };
 
-const mapStateToProps = ({ authedUser, users }) => ({
+const mapStateToProps = ({ authUser, users }) => ({
   users: Object.values(users),
-  loading: authedUser === null,
 });
 
 export default connect(mapStateToProps, { setAuthUser })(Login);
