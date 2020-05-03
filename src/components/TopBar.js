@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const TopBar = ({ user, setAuthUser }) => {
-  const classes = useStyles()
+  const classes = useStyles();
 
   const handleLogOut = (event) => {
     event.preventDefault();
@@ -62,6 +62,14 @@ const TopBar = ({ user, setAuthUser }) => {
           <Link
             variant="button"
             color="textPrimary"
+            href="/"
+            className={classes.link}
+          >
+            Home
+          </Link>
+          <Link
+            variant="button"
+            color="textSecondary"
             href="/add"
             className={classes.link}
           >
@@ -69,7 +77,7 @@ const TopBar = ({ user, setAuthUser }) => {
           </Link>
           <Link
             variant="button"
-            color="textPrimary"
+            color="textSecondary"
             href="/leaderboard"
             className={classes.link}
           >
@@ -77,6 +85,7 @@ const TopBar = ({ user, setAuthUser }) => {
           </Link>
         </nav>
         <Avatar variant="square" alt={user.name} src={user.avatarURL} />
+
         <Button
           href="#"
           color="primary"
@@ -84,7 +93,7 @@ const TopBar = ({ user, setAuthUser }) => {
           className={classes.link}
           onClick={handleLogOut}
         >
-          Logout
+          Logout {user.name}
         </Button>
       </Toolbar>
     </AppBar>
@@ -96,4 +105,3 @@ const mapStateToProps = ({ users, authUser }) => ({
 });
 
 export default connect(mapStateToProps, { setAuthUser })(TopBar);
-
