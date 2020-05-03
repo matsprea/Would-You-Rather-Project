@@ -27,9 +27,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Poll = ({ users, question, user, match }) => {
+const Poll = (question, users, badPath, user) => {
   const classes = useStyles();
-  console.log('match', match);
 
   return (
     <Container component="main">
@@ -82,17 +81,11 @@ const Poll = ({ users, question, user, match }) => {
   );
 };
 
-const mapStateToProps = ({ authUser, questions, users }, { match }) => {
-  const { question_id } = match.params;
-  const badPath = !(question_id in questions);
-
-  return {
-    user: users[authUser],
-    users,
-    badPath,
-    question: badPath ? {} : questions[question_id],
-  };
-}
-;
+const mapStateToProps = ({ authUser, questions, users }, { question_id }) => ({
+  user: users[authUser],
+  users,
+  question: question_id in questions ? questions[question_id] : null,
+  badPath: !(question_id in questions),
+});
 
 export default connect(mapStateToProps)(Poll);

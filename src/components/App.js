@@ -1,13 +1,19 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from 'react-router-dom';
 import { handleInitialData } from '../actions/shared';
 import Login from './Login';
 import Topbar from './TopBar';
 import Home from './Home';
 import Leaderboard from './Leaderboard';
 import NewPoll from './NewPoll';
-import Question from './NewPoll';
+import Question from './Question';
+import BadPath from './BadPath';
 
 const App = ({ authUser, handleInitialData }) => {
   useEffect(() => {
@@ -22,12 +28,16 @@ const App = ({ authUser, handleInitialData }) => {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/questions/:question_id" component={Question} />
-            <Route path="/add" component={NewPoll} />
-            <Route path="/leaderboard" component={Leaderboard} />
+            <Route exact path="/add" component={NewPoll} />
+            <Route exact path="/leaderboard" component={Leaderboard} />
+            <Route component={BadPath} />
           </Switch>
         </>
       ) : (
-        <Route component={Login} />
+          <Switch>
+            <Route exact path="/" component={Login} />
+            <Route component={() => <Redirect to='/' />} />
+          </Switch>
       )}
     </Router>
   );
