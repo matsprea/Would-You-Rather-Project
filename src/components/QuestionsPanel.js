@@ -29,10 +29,10 @@ const QuestionPanel = ({ tab, questions, users, index, action }) => {
       aria-labelledby={`simple-tab-${index}`}
     >
       {tab === index && (
-        <Container component="main">
+        <Container component="main" maxWidth="sm">
           <Grid container spacing={5} alignItems="flex-end">
             {questions.map((question) => (
-              <Grid item key={question.id} xs={12} sm={6} md={4}>
+              <Grid item key={question.id} xs={12} sm={12} md={12}>
                 <Card>
                   <CardHeader
                     avatar={
@@ -43,10 +43,10 @@ const QuestionPanel = ({ tab, questions, users, index, action }) => {
                       />
                     }
                     title="Would you rather"
-                    subheader={`by ${question.author}`}
+                    subheader={`by ${users[question.author].name}`}
                     titleTypographyProps={{ align: 'center' }}
                     subheaderTypographyProps={{ align: 'center' }}
-                    className={classes.cardHeader}
+                    
                   />
                   <CardContent>
                     <div className={classes.options}>

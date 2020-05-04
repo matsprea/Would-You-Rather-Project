@@ -28,12 +28,17 @@ const Question = ({ users, question, authUser, handleSaveQuestionAnswer }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    if (disabled) return;
     handleSaveQuestionAnswer(authUser, question.id, response);
   };
+  
   const handleRadioChange = (event) => {
+    event.preventDefault();
     setResponse(event.target.value);
   };
 
+  const disabled = response === '';
+  
   return (
     <Container component="main" maxWidth="sm">
       <Card>
@@ -46,7 +51,7 @@ const Question = ({ users, question, authUser, handleSaveQuestionAnswer }) => {
             />
           }
           title="Would you rather"
-          subheader={`by ${question.author}`}
+          subheader={`by ${users[question.author].name}`}
           titleTypographyProps={{ align: 'center' }}
           subheaderTypographyProps={{ align: 'center' }}
           className={classes.cardHeader}
@@ -78,6 +83,7 @@ const Question = ({ users, question, authUser, handleSaveQuestionAnswer }) => {
                   variant="outlined"
                   color="primary"
                   className={classes.button}
+                  disabled={disabled}
                 >
                   Submit
                 </Button>

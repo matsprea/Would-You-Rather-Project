@@ -45,7 +45,7 @@ const Result = ({ users, question, user }) => {
             />
           }
           title="Would you rather"
-          subheader={`by ${question.author}`}
+          subheader={`by ${users[question.author].name}`}
           titleTypographyProps={{ align: 'center' }}
           subheaderTypographyProps={{ align: 'center' }}
           className={classes.cardHeader}
@@ -72,7 +72,7 @@ const Result = ({ users, question, user }) => {
                 }
                 secondary={`${optionOneVotes} vote(s) - ${Math.round(
                   (optionOneVotes / totalVotes) * 100
-                )}% `}
+                )}%${optionVoted === 'optionOne' ? ' - selected by you' : ''}`}
               />
             </ListItem>
             <ListItem selected={optionVoted === 'optionTwo'}>
@@ -100,7 +100,7 @@ const Result = ({ users, question, user }) => {
                 }
                 secondary={`${optionTwoVotes} vote(s) - ${Math.round(
                   (optionTwoVotes / totalVotes) * 100
-                )}% `}
+                )}%${optionVoted === 'optionTwo' ? ' - selected by you' : ''}`}
               />
             </ListItem>
           </List>
